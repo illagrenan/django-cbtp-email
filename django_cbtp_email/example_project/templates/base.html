@@ -1,0 +1,31 @@
+{% load static %}
+{% load mailing_tags %}
+
+<!doctype html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Test mail</title>
+
+    <style>
+        h1 {
+            color: red;
+        }
+
+        p.first {
+            font-size: 20pt;
+            color: blue;
+        }
+
+        footer {
+            color: darkslategray;;
+        }
+    </style>
+
+    {% css_direct "css/my_css.css" %}
+
+</head>
+<body>
+{% block content %}{% endblock %}
+</body>
+</html>

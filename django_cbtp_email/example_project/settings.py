@@ -7,7 +7,7 @@ from __future__ import absolute_import
 
 import os
 
-DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS = ["*"]
 
 TIME_ZONE = 'Europe/Prague'
@@ -15,20 +15,10 @@ TIME_ZONE = 'Europe/Prague'
 LANGUAGE_CODE = 'en-us'
 
 MEDIA_ROOT = os.path.join(os.path.dirname(__file__), 'media')
-STATIC_ROOT = os.path.join(os.path.dirname(__file__), 'static')
-MEDIA_URL = '/media/'
-
-STATIC_URL = '/static/'
-
-MIDDLEWARE_CLASSES = (
-    'django.middleware.common.CommonMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
+STATICFILES_DIRS = (
+    os.path.join(os.path.dirname(__file__), 'static'),
 )
 
-SITE_ID = 1
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -39,11 +29,6 @@ DATABASES = {
 INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django_cbtp_email',
-)
-
-TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
 )
 
 TEMPLATE_DIRS = (
@@ -59,7 +44,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 ROOT_URLCONF = 'django_cbtp_email.example_project.urls'
-SECRET_KEY = 'any-key'
+SECRET_KEY = '42'
 
-EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
-EMAIL_FILE_PATH = '/tmp/app-messages'  # change this to a proper location
+# EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
+EMAIL_FILE_PATH = os.path.join(os.path.dirname(__file__), 'tmp')

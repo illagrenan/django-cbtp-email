@@ -34,7 +34,10 @@ def test_install():
 
 @task()
 def test():
-    local("nosetests --with-coverage --cover-package=django_cbtp_email --cover-tests --cover-erase --with-doctest --nocapture")
+    local("nosetests --with-coverage --cover-package=django_cbtp_email "
+          "--cover-tests --cover-erase --with-doctest --nocapture")
+
+    # local("py.test django_cbtp_email -s --doctest-modules --cov=django_cbtp_email")
 
     print("Test OK.")
 

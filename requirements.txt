@@ -5,3 +5,4 @@ premailer
 django-annoying
 six
 setuptools
+nose

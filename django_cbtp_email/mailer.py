@@ -7,7 +7,6 @@ from __future__ import absolute_import
 
 from abc import ABCMeta
 import logging
-import collections
 import os
 
 from django.conf import settings
@@ -71,4 +70,7 @@ class Mailer(object):
                 self.log_send_mail_error(ex)
 
     def get_recipients(self):
-        return self.to if isinstance(self.to, collections.Iterable) else [self.to]
+        if not self.to:
+            raise ValueError("Recipient of e-mail is not set.")
+
+        return self.to if hasattr(self.to, '__iter__') else [self.to]
