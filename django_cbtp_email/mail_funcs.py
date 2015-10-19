@@ -9,7 +9,6 @@ import logging
 import os
 
 from annoying.functions import get_config
-
 from django.conf import settings
 from django.template import loader
 from django.template import Context
@@ -17,12 +16,11 @@ from django.core.mail import EmailMessage
 from django.utils import translation
 from premailer import Premailer
 
-
 logger = logging.getLogger(__name__)
 
 
 def send_mail(subject, template, context, to, from_email=settings.DEFAULT_FROM_EMAIL,
-              template_variant=settings.DEFAULT_TEMPLATE_VARIANT, attachment=None):
+              template_variant=get_config('DEFAULT_TEMPLATE_VARIANT', 'html'), attachment=None):
     """
     Vyrenderuje předanou šablonu do stringu. Dle globálního nastavení nebo předaného posledního parametru se rozhodne,
     zda odešle html nebo txt verzi e-mailu.

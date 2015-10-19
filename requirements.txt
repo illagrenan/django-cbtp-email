@@ -1,6 +1,8 @@
 Fabric
 coverage
+coveralls
 wheel
 premailer
 django-annoying
 six
+setuptools
