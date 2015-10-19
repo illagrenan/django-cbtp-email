@@ -1,0 +1,17 @@
+language: python
+python:
+  - 2.7
+env:
+  - DJANGO=1.7.10
+  - DJANGO=1.8.5
+install:
+    - pip install -q Django==$DJANGO
+    - pip install coveralls nose
+script:
+    - python setup.py build
+    - python setup.py sdist
+    - nosetests -v --with-coverage --cover-package=django_cbtp_email --cover-tests --cover-erase --with-doctest --nocapture
+after_success:
+    - coveralls
+notifications:
+    email: false

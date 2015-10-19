@@ -1,0 +1,74 @@
+# -*- encoding: utf-8 -*-
+# ! python2
+
+from __future__ import unicode_literals
+from __future__ import print_function
+from __future__ import absolute_import
+
+from abc import ABCMeta
+import logging
+import collections
+import os
+
+from django.conf import settings
+import six
+
+from .mail_funcs import send_mail
+
+logger = logging.getLogger(__name__)
+
+
+class Mailer(object):
+    __metaclass__ = ABCMeta
+
+    template = None
+    context = {}
+    to = None
+    subject = None
+    attachment = None
+
+    def __init__(self, **kwargs):
+        """
+        Constructor. Called in the URLconf; can contain helpful extra
+        keyword arguments, and other things.
+        """
+        # Go through keyword arguments, and either save their values to our
+        # instance, or raise an error.
+        for key, value in six.iteritems(kwargs):
+            setattr(self, key, value)
+
+    def log_send_mail_error(self, exception_to_log):
+        logger.error(exception_to_log,
+                     extra={
+                         'stack': True,
+                         'data': {
+                             'self': self,
+                         }
+                     }
+                     )
+
+    def attach_file(self, file_path):
+        if not os.path.isfile(file_path):
+            raise ValueError("\"{}\" is not a valid file".format(file_path))
+
+        self.attachment = file_path
+
+    def send_message(self):
+        to = self.get_recipients()
+
+        try:
+            send_mail(
+                self.subject,
+                self.template,
+                context=self.context,
+                to=to,
+                attachment=self.attachment
+            )
+        except Exception as ex:
+            if settings.DEBUG:
+                raise
+            else:
+                self.log_send_mail_error(ex)
+
+    def get_recipients(self):
+        return self.to if isinstance(self.to, collections.Iterable) else [self.to]

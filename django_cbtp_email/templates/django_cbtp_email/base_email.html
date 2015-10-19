@@ -1,0 +1,33 @@
+{% load static %}
+{% load mailing_tags %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+
+    <style type="text/css">
+
+    </style>
+
+    {#    {% css_direct "styles/admin/admin_extra.css" %}#}
+    {#    {% css_direct "styles/admin_view/process_detail_view.css" %}#}
+    {#    {% css_direct "styles/templatetags/logger_tags.css" %}#}
+
+    {% block extra_head %}
+    {% endblock %}
+
+</head>
+<body>
+
+
+{% block content %}
+{% endblock %}
+
+
+</body>
+</html>

@@ -1,0 +1,6 @@
+Fabric
+coverage
+wheel
+premailer
+django-annoying
+six
