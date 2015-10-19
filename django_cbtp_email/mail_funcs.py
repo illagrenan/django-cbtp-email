@@ -26,11 +26,8 @@ def send_mail(subject, template, context, to, from_email=settings.DEFAULT_FROM_E
     zda odešle html nebo txt verzi e-mailu.
 
     Usage:
-
-        >>> ctx = {
-        >>>     'some_var': True,
-        >>> }
-        >>> send_mail('E-mail subject', 'default_file_extensiontension/emails/bar', context=ctx, to=['joh.doe@example.com'])
+        > ctx = { 'some_var': True }
+        > send_mail('E-mail subject', 'default_file_extensiontension/emails/bar', context=ctx, to=['joh.doe@example.com'])
 
     :param template - ceska k šablonám bez koncovky (ta je určena posledním parametrem)
     :param template_variant - txt nebo html (viz nastavení)
