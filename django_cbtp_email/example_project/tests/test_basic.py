@@ -4,6 +4,8 @@
 from __future__ import unicode_literals
 from __future__ import print_function
 from __future__ import absolute_import
+import os
+import tempfile
 
 from django.test import TestCase
 
@@ -25,6 +27,19 @@ class BasicUsageTestCase(TestCase):
         assert TestMailer.subject in sent_message.subject
         assert TestMailer.to in sent_message.to
         assert "<p style=\"font-size:42pt\">" in sent_message.body
+
+    def test_attachment(self):
+        test_mailer = TestMailer()
+
+        with tempfile.NamedTemporaryFile(mode='w', delete=False) as temp:
+            test_mailer.attach_file(temp.name)
+            test_mailer.send_message()
+
+        from django.core.mail import outbox
+
+        assert len(outbox) == 1
+
+        os.remove(temp.name)
 
     def test_empty_recipient(self):
         test_mailer = TestMailer(to=None)
