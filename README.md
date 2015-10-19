@@ -1,37 +1,27 @@
-# django_cbtp_email #
+# Django CBTP e-mail #
 
-[![Travis CI Badge](https://api.travis-ci.org/illagrenan/django-custom-500.png)](https://travis-ci.org/illagrenan/django-custom-500)
+[![Travis CI Badge](https://api.travis-ci.org/illagrenan/django-cbtp-email.png)](https://travis-ci.org/illagrenan/django-cbtp-email)
 &nbsp;
-[![Coverage Status](https://coveralls.io/repos/illagrenan/django-custom-500/badge.svg?branch=master)](https://coveralls.io/r/illagrenan/django-custom-500?branch=master)
+[![Coverage Status](https://coveralls.io/repos/illagrenan/django-cbtp-email/badge.svg?branch=master)](https://coveralls.io/r/illagrenan/django-cbtp-email?branch=master)
 &nbsp;
-[![Requirements Status](https://requires.io/github/illagrenan/django-custom-500/requirements.svg?branch=master)](https://requires.io/github/illagrenan/django-custom-500/requirements/?branch=master)
+[![Requirements Status](https://requires.io/github/illagrenan/django-cbtp-email/requirements.svg?branch=master)](https://requires.io/github/illagrenan/django-cbtp-email/requirements/?branch=master)
 
 ## Installation ##
 
 **This package is not yet on PyPI. Download it from Github:**
 
 ```bash
-pip install --upgrade git+git://github.com/illagrenan/django-custom-500.git#egg=django-custom-500
+pip install --upgrade git+git://github.com/illagrenan/django-cbtp-email.git#egg=django-cbtp-email
 ```
 
 
-**Add `django_custom_500` to `INSTALLED_APPS`:**
+**Add `django_cbtp_email` to `INSTALLED_APPS`:**
 ```python
 INSTALLED_APPS = (
-    'django_custom_500',
+    'django_cbtp_email',
 )
 ```
 
 ## Usage ##
 
-Create `500.html` in your `template` folder.
-
-**OR**
-
-Set `CUSTOM_500_TEMPLATE` in your settings.
-
-Example:
-
-```python
-CUSTOM_500_TEMPLATE = "my/path/to/500.html"
-```
+TODO
