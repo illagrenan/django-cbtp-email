@@ -2,7 +2,7 @@
 
 [![Travis CI Badge](https://api.travis-ci.org/illagrenan/django-cbtp-email.png)](https://travis-ci.org/illagrenan/django-cbtp-email)
 &nbsp;
-[![Coverage Status](https://coveralls.io/repos/illagrenan/django-cbtp-email/badge.svg?branch=master)](https://coveralls.io/r/illagrenan/django-cbtp-email?branch=master)
+[![Coverage Status](https://coveralls.io/repos/illagrenan/django-cbtp-email/badge.svg?branch=master&service=github)](https://coveralls.io/github/illagrenan/django-cbtp-email?branch=master)
 &nbsp;
 [![Requirements Status](https://requires.io/github/illagrenan/django-cbtp-email/requirements.svg?branch=master)](https://requires.io/github/illagrenan/django-cbtp-email/requirements/?branch=master)
 
