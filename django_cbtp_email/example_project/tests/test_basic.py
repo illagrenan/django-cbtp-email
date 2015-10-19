@@ -9,5 +9,5 @@ from django.test import TestCase
 
 
 class DummyTestCase(TestCase):
-    def test_will_always_fail(self):
-        self.assertTrue(False)
+    def test_will_always_pass(self):
+        self.assertTrue(True)
