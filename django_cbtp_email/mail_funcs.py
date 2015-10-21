@@ -20,7 +20,7 @@ logger = logging.getLogger(__name__)
 
 
 def send_mail(subject, template, context, to, from_email=settings.DEFAULT_FROM_EMAIL,
-              template_variant=get_config('DEFAULT_TEMPLATE_VARIANT', 'html'), attachment=None):
+              template_variant=get_config('DEFAULT_TEMPLATE_TYPE', 'html'), attachment=None):
     """
     Render template and send it as a mail.
 
