@@ -47,7 +47,7 @@ test_mailer.send_message()
 
 Create e-mail template (e.g. in `your_app/templates/mail/test_email.html`):
 
-```css+django
+```django
 {% extends "email_base.html" %}
 
 {% block content %}
