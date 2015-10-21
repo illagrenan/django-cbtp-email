@@ -39,9 +39,14 @@ from django_cbtp_email.mailer import Mailer
 class TestMailer(Mailer):
     template = "test_mail" # .html is added by default
     subject = "Subject of test mail"
-    to = "nobody@localhost"
+    to = ["nobody@localhost"] # or override method get_recipients()
+    context = {
+        "title": "Hello world"
+    }
 
 test_mailer = TestMailer()
+text_mailer.attach_file("path/to/file_to_attach.PDF")
+text_mailer.to.append("john@localhost")
 test_mailer.send_message()
 ```
 
@@ -51,7 +56,7 @@ Create e-mail template (e.g. in `your_app/templates/mail/test_email.html`):
 {% extends "email_base.html" %}
 
 {% block content %}
-    <h1>Hello world</h1>
+    <h1>{{ title }}</h1>
 
     <p class="first">
         Lorem ipsum...
