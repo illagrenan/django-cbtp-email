@@ -9,7 +9,6 @@ from abc import ABCMeta
 import logging
 import os
 
-from django.conf import settings
 import six
 
 from .mail_funcs import send_mail
@@ -64,10 +63,8 @@ class Mailer(object):
                 attachment=self.attachment
             )
         except Exception as ex:
-            if settings.DEBUG:
-                raise
-            else:
-                self.log_send_mail_error(ex)
+            self.log_send_mail_error(ex)
+            raise
 
     def get_recipients(self):
         if not self.to:

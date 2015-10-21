@@ -6,3 +6,4 @@ django-annoying
 six
 setuptools
 nose
+mock
