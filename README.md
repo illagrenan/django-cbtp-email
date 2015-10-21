@@ -47,7 +47,7 @@ test_mailer.send_message()
 
 Create e-mail template (e.g. in `your_app/templates/mail/test_email.html`):
 
-```django
+```html+django
 {% extends "email_base.html" %}
 
 {% block content %}
@@ -65,7 +65,7 @@ Create e-mail template (e.g. in `your_app/templates/mail/test_email.html`):
 
 Content of `email_base.html`:
 
-```css+django
+```html+django
 {% load mailing_tags %}
 
 <!doctype html>
