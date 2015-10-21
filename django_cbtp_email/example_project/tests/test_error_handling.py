@@ -6,7 +6,6 @@ from __future__ import print_function
 from __future__ import absolute_import
 
 from django.template import TemplateDoesNotExist
-
 from django.test import TestCase, override_settings
 
 from ..tests.mailers import TestMailer

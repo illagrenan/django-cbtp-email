@@ -8,7 +8,6 @@ from __future__ import absolute_import
 import os
 import sys
 
-
 sys.path.append(os.path.normpath("../.."))
 
 if __name__ == "__main__":
