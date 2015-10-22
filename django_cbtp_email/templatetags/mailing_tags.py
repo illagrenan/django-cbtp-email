@@ -41,7 +41,7 @@ def css_direct(css_path):
 @register.simple_tag(takes_context=True)
 def static_direct(context, static_path):
     """
-    :type static_path: str
+    :type static_path: basestring, str
     """
     if "request" in context:
         return static(static_path)

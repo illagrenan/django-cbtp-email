@@ -4,10 +4,13 @@
 from __future__ import unicode_literals
 from __future__ import print_function
 from __future__ import absolute_import
+import os
 
 from django.template import Context, Template
 from django.test import TestCase
 import mock as mock
+
+from ...templatetags.mailing_tags import static_direct
 
 from ...errors import CssForEmailNotFoundError
 
@@ -40,3 +43,36 @@ class MailingTemplateTagsTestCase(TestCase):
         )
 
         self.assertRaises(ValueError, tpl_to_render.render, Context({}))
+
+
+class ATemplateTagsTestCase(TestCase):
+    @mock.patch('django.template.Context')
+    def test_absolute_path(self, context):
+        rendered_tpl_string = Template(
+            "{% load mailing_tags %}"
+            "{% static_direct \"css/my_css.css\" %}"
+        ).render(Context({}))
+        """:type : str """
+
+        # TODO Assert with regex
+        self.assertIn("file:///", rendered_tpl_string)
+        self.assertIn("my_css.css", rendered_tpl_string)
+
+    @mock.patch('django.template.Context')
+    def test_absolute_path_exists(self, context):
+        file_path = static_direct(context, "css/my_css.css")
+        """:type : str """
+
+        self.assertTrue(os.path.isfile(file_path.replace("file:///", "")))
+
+    @mock.patch('django.template.Context')
+    def test_with_request_no_absolute_path(self, context):
+        rendered_tpl_string = Template(
+            "{% load mailing_tags %}"
+            "{% static_direct \"css/my_css.css\" %}"
+        ).render(Context({'request': True}))
+        """:type : str """
+
+        # TODO Assert with regex
+        self.assertNotIn("file:///", rendered_tpl_string)
+        self.assertIn("my_css.css", rendered_tpl_string)
