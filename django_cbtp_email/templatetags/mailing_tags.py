@@ -11,6 +11,7 @@ from __future__ import absolute_import
 
 from django.template import Library
 from django.contrib.staticfiles import finders
+from django.templatetags.static import static
 
 from django_cbtp_email.errors import CssForEmailNotFoundError
 
@@ -35,3 +36,14 @@ def css_direct(css_path):
         css_content = the_file.read()
 
     return "<style type=\"text/css\">{0}</style>".format(css_content)
+
+
+@register.simple_tag(takes_context=True)
+def static_direct(context, static_path):
+    """
+    :type static_path: str
+    """
+    if "request" in context:
+        return static(static_path)
+
+    return "file:///{}".format(finders.find(static_path))
