@@ -1,18 +1,16 @@
 # -*- encoding: utf-8 -*-
 # ! python2
 
-from __future__ import unicode_literals
-from __future__ import print_function
-from __future__ import absolute_import
+from __future__ import (absolute_import, division, print_function, unicode_literals)
+
 import os
 
+import mock as mock
 from django.template import Context, Template
 from django.test import TestCase
-import mock as mock
-
-from ...templatetags.mailing_tags import static_direct
 
 from ...errors import CssForEmailNotFoundError
+from ...templatetags.mailing_tags import static_direct
 
 
 class MailingTemplateTagsTestCase(TestCase):
