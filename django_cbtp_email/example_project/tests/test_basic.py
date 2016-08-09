@@ -23,10 +23,11 @@ class BasicUsageTestCase(TestCase):
         sent_message = outbox[0]
         """:type : django.core.mail.EmailMessage """
 
-        assert TestMailer.subject in sent_message.subject
-        assert TestMailer.to in sent_message.to
-        assert "<p style=\"font-size:42pt\">" in sent_message.body
+        self.assertIn(TestMailer.subject, sent_message.subject)
+        self.assertIn(TestMailer.to, sent_message.to)
+        self.assertIn("<p style=\"font-size:42pt\">", sent_message.body)
 
+    # noinspection PyMethodMayBeStatic
     def test_attachment(self):
         test_mailer = TestMailer()
 
