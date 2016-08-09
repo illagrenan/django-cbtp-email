@@ -3,6 +3,8 @@
 
 from __future__ import (absolute_import, division, print_function, unicode_literals)
 
+import io
+
 from django.contrib.staticfiles import finders
 from django.template import Library
 from django.templatetags.static import static
@@ -26,7 +28,7 @@ def css_direct(css_path):
         raise CssForEmailNotFoundError(
             "Cannot find \"{}\", searched locations: {}".format(css_path, finders.searched_locations))
 
-    with open(result) as the_file:
+    with io.open(result, mode="rt", encoding="utf-8") as the_file:  # rt == read text mode
         css_content = the_file.read()
 
     return "<style type=\"text/css\">{0}</style>".format(css_content)
