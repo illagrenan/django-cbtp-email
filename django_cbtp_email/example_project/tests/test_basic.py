@@ -25,7 +25,7 @@ class BasicUsageTestCase(TestCase):
 
         self.assertIn(TestMailer.subject, sent_message.subject)
         self.assertIn(TestMailer.to, sent_message.to)
-        self.assertIn("<p style=\"font-size:42pt\">", sent_message.body)
+        self.assertIn("<p class=\"second\" style=\"font-size:42pt\">", sent_message.body)
 
     # noinspection PyMethodMayBeStatic
     def test_attachment(self):
