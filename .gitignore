@@ -126,3 +126,4 @@ $RECYCLE.BIN/
 *.lnk
 /.env
 
+/activate.ps1
