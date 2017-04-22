@@ -66,6 +66,13 @@ def publish():
 
 
 @task
+def publish_twine():
+    """publish package"""
+    check()
+    run('twine upload dist/* --skip-existing')
+
+
+@task
 def publish_test():
     """publish package"""
     check()
