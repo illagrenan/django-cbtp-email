@@ -1,4 +1,5 @@
 # coding=utf-8
+import io
 
 from setuptools import setup
 
@@ -15,15 +16,14 @@ except ImportError:
 
     def read_md(file_name):
         try:
-            return open(file_name, 'r').read()
+            return io.open(file_name, 'r', encoding='utf-8').read()
         except UnicodeDecodeError:
             return "Encoding problems with README.md"
-
 
 # https://hynek.me/articles/sharing-your-labor-of-love-pypi-quick-and-dirty/
 setup(
     name='django_cbtp_email',
-    version='0.0.1',
+    version='0.1.0',
     description='TODO Add description',
 
     # ########################################################################
@@ -53,6 +53,13 @@ setup(
     include_package_data=True,
     classifiers=[
         'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
+        'Framework :: Django',
+        'Framework :: Django :: 1.8',
+        'Framework :: Django :: 1.10',
+        'Framework :: Django :: 1.11',
         'License :: OSI Approved :: MIT License',
         'Development Status :: 3 - Alpha',
         'Environment :: Web Environment',
