@@ -15,11 +15,13 @@ CBTP
 
 ## Installation ##
 
-**This package is not yet on PyPI. Download it from Github:**
+**Install this package using pip:**
 
 ```bash
-pip install --upgrade git+git://github.com/illagrenan/django-cbtp-email.git#egg=django-cbtp-email
+pip install --upgrade django-cbtp-email
 ```
+
+Supported Python versions are: `2.7`, `3.4`, `3.5` and `3.6`.
 
 
 **Add `django_cbtp_email` to `INSTALLED_APPS`:**
