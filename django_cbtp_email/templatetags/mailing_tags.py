@@ -8,6 +8,7 @@ import io
 from django.contrib.staticfiles import finders
 from django.template import Library
 from django.templatetags.static import static
+from django.utils.safestring import mark_safe
 
 from django_cbtp_email.errors import CssForEmailNotFoundError
 
@@ -31,7 +32,9 @@ def css_direct(css_path):
     with io.open(result, mode="rt", encoding="utf-8") as the_file:  # rt == read text mode
         css_content = the_file.read()
 
-    return "<style type=\"text/css\">{0}</style>".format(css_content)
+    css_style = "<style type=\"text/css\">{0}</style>".format(css_content)
+
+    return mark_safe(css_style)
 
 
 @register.simple_tag(takes_context=True)

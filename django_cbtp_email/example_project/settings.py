@@ -16,6 +16,7 @@ MEDIA_ROOT = os.path.join(os.path.dirname(__file__), 'media')
 STATICFILES_DIRS = (
     os.path.join(os.path.dirname(__file__), 'static'),
 )
+STATIC_URL = '/static/'
 
 DATABASES = {
     'default': {
@@ -34,12 +35,23 @@ TEMPLATE_DIRS = (
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.contrib.auth.context_processors.auth',
-    'django.core.context_processors.i18n',
     'django.core.context_processors.request',
-    'django.core.context_processors.media',
-    'django.contrib.messages.context_processors.messages'
 )
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            os.path.join(os.path.dirname(__file__), "templates"),
+        ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.request'
+            ],
+        },
+    },
+]
 
 ROOT_URLCONF = 'django_cbtp_email.example_project.urls'
 SECRET_KEY = '42'
