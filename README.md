@@ -47,8 +47,8 @@ class TestMailer(Mailer):
     }
 
 test_mailer = TestMailer()
-text_mailer.attach_file("path/to/file_to_attach.PDF")
-text_mailer.to.append("john@localhost")
+test_mailer.attach_file("path/to/file_to_attach.PDF")
+test_mailer.to.append("john@localhost")
 test_mailer.send_message()
 ```
 
@@ -65,7 +65,7 @@ Create e-mail template (e.g. in `your_app/templates/mail/test_email.html`):
     </p>
 
     <footer>
-        &copy; 2015 ACME
+        &copy; 2017 ACME
     </footer>
 {% endblock %}
 ```
