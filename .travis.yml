@@ -17,7 +17,6 @@ install:
     - pip install -q Django==$DJANGO
     - pip install -r requirements.txt
 script:
-    - rm fabfile.py
     - python setup.py build
     - python setup.py sdist
     - nosetests -v --with-coverage --cover-package=django_cbtp_email --cover-tests --cover-erase --with-doctest --nocapture
