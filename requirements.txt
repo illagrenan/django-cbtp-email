@@ -7,3 +7,4 @@ six
 setuptools
 nose
 mock
+invoke==0.12.2 # pyup: ignore

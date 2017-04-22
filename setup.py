@@ -23,8 +23,8 @@ except ImportError:
 # https://hynek.me/articles/sharing-your-labor-of-love-pypi-quick-and-dirty/
 setup(
     name='django_cbtp_email',
-    version='0.1.0',
-    description='TODO Add description',
+    version='0.1.1',
+    description=' Class-based mailer for Django using templates with inlined CSS.',
 
     # ########################################################################
     #
