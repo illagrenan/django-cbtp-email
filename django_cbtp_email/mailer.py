@@ -22,6 +22,7 @@ class Mailer(object):
     to = None
     subject = None
     attachment = None
+    premailer = True
 
     def __init__(self, **kwargs):
         """
@@ -58,7 +59,8 @@ class Mailer(object):
                 self.template,
                 context=self.context,
                 to=to,
-                attachment=self.attachment
+                attachment=self.attachment,
+                premailer=getattr(self, 'premailer', True)
             )
         except Exception as ex:
             self.log_send_mail_error(ex)

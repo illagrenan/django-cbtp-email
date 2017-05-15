@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 
 
 def send_mail(subject, template, context, to, from_email=settings.DEFAULT_FROM_EMAIL,
-              template_variant=get_config('DEFAULT_TEMPLATE_TYPE', 'html'), attachment=None):
+              template_variant=get_config('DEFAULT_TEMPLATE_TYPE', 'html'), attachment=None, premailer=True):
     """
     Render template and send it as a mail.
 
@@ -38,13 +38,14 @@ def send_mail(subject, template, context, to, from_email=settings.DEFAULT_FROM_E
     finally:
         translation.activate(current_language)
 
-    premailer = Premailer(
-        html_message,
-        base_url=get_config('BASE_URL_FOR_EMAIL_LINK', None),
-        base_path=settings.STATIC_ROOT
-    )
+    if premailer:
+        premailer = Premailer(
+            html_message,
+            base_url=get_config('BASE_URL_FOR_EMAIL_LINK', None),
+            base_path=settings.STATIC_ROOT
+        )
 
-    html_message = premailer.transform()
+        html_message = premailer.transform()
 
     mail = EmailMessage(settings.EMAIL_SUBJECT_PREFIX + subject, html_message, to=to, from_email=from_email)
     if template_variant == "html":
