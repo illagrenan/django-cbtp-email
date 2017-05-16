@@ -16,8 +16,15 @@ from premailer import Premailer
 logger = logging.getLogger(__name__)
 
 
-def send_mail(subject, template, context, to, from_email=settings.DEFAULT_FROM_EMAIL,
-              template_variant=get_config('DEFAULT_TEMPLATE_TYPE', 'html'), attachment=None, premailer=True):
+def send_mail(subject,
+              template,
+              context,
+              to,
+              language,
+              from_email=settings.DEFAULT_FROM_EMAIL,
+              template_variant=get_config('DEFAULT_TEMPLATE_TYPE', 'html'),
+              attachment=None,
+              premailer=True):
     """
     Render template and send it as a mail.
 
@@ -26,17 +33,12 @@ def send_mail(subject, template, context, to, from_email=settings.DEFAULT_FROM_E
         > send_mail('E-mail subject', 'default_file_extensiontension/emails/bar', context=ctx, to=['joh.doe@example.com'])
     """
     template_path = os.path.normcase("{}.{}".format(template, template_variant))
-    current_language = translation.get_language()
 
     if isinstance(to, str):
         to = [to]
 
-    try:
-        # TODO Allow to activate different language
-        translation.activate(current_language)
+    with translation.override(language):
         html_message = render_to_string(template_path, context)
-    finally:
-        translation.activate(current_language)
 
     if premailer:
         premailer = Premailer(

@@ -8,6 +8,7 @@ import os
 from abc import ABCMeta
 
 import six
+from django.utils import translation
 
 from .mail_funcs import send_mail
 
@@ -23,6 +24,7 @@ class Mailer(object):
     subject = None
     attachment = None
     premailer = True
+    language = None
 
     def __init__(self, **kwargs):
         """
@@ -59,6 +61,7 @@ class Mailer(object):
                 self.template,
                 context=self.context,
                 to=to,
+                language=self.get_language(),
                 attachment=self.attachment,
                 premailer=getattr(self, 'premailer', True)
             )
@@ -71,3 +74,9 @@ class Mailer(object):
             raise ValueError("Recipient of e-mail is not set.")
 
         return self.to if hasattr(self.to, '__iter__') else [self.to]
+
+    def get_language(self):
+        if not hasattr(self, 'language') or not self.language:
+            return translation.get_language()
+        else:
+            return self.language
