@@ -11,6 +11,7 @@ from django.conf import settings
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 from django.utils import translation
+from django.utils.encoding import force_text
 from premailer import Premailer
 
 logger = logging.getLogger(__name__)
@@ -38,6 +39,7 @@ def send_mail(subject,
         to = [to]
 
     with translation.override(language):
+        translated_subject = force_text(subject)
         html_message = render_to_string(template_path, context)
 
     if premailer:
@@ -49,7 +51,7 @@ def send_mail(subject,
 
         html_message = premailer.transform()
 
-    mail = EmailMessage(settings.EMAIL_SUBJECT_PREFIX + subject, html_message, to=to, from_email=from_email)
+    mail = EmailMessage(settings.EMAIL_SUBJECT_PREFIX + translated_subject, html_message, to=to, from_email=from_email)
     if template_variant == "html":
         mail.content_subtype = "html"
 
